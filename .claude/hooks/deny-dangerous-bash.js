@@ -40,6 +40,15 @@ process.stdin.on("end", () => {
       re: /\b(sh|bash|zsh|dash)\b\s+-c\s+.*\$\([^)]*\b(curl|wget)\b/i,
       reason: "curl/wget로 받은 스크립트를 커맨드 치환으로 바로 실행하는 명령은 차단됩니다.",
     },
+    {
+      // git push --force / -f (but not --force-with-lease), anywhere in the push args
+      re: /\bgit\s+push\b[^;&|]*(--force(?!-with-lease)\b|(?:^|\s)-f\b)/i,
+      reason: "git push --force 명령은 차단됩니다.",
+    },
+    {
+      re: /\bgit\s+reset\b[^;&|]*--hard\b/i,
+      reason: "git reset --hard 명령은 차단됩니다.",
+    },
   ];
 
   for (const { re, reason } of rules) {
