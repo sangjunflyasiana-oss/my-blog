@@ -37,12 +37,16 @@
   posts.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 
   listEl.innerHTML = posts
-    .map(
-      (post) => `
+    .map((post, i) => {
+      const num = String(posts.length - i).padStart(2, "0");
+      return `
         <li>
-          <a href="post.html?post=${encodeURIComponent(post.filename)}">${escapeHtml(post.title)}</a>
-          ${post.date ? `<span class="post-date">${escapeHtml(post.date)}</span>` : ""}
-        </li>`
-    )
+          <a href="post.html?post=${encodeURIComponent(post.filename)}">
+            <span class="post-index">POST ${num}</span>
+            ${escapeHtml(post.title)}
+            ${post.date ? `<span class="post-date">${escapeHtml(post.date)}</span>` : ""}
+          </a>
+        </li>`;
+    })
     .join("");
 })();
