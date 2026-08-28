@@ -2,6 +2,8 @@
 
 마크다운 파일을 읽어 렌더링하는 프레임워크 없는 정적 블로그.
 
+배포 링크: https://sangjunflyasiana-oss.github.io/my-blog/
+
 ## 로컬에서 실행하기
 
 브라우저가 `.md` 파일을 `fetch`로 읽기 때문에, `index.html`을 더블클릭해서(`file://`) 열면 CORS 정책에 막혀 동작하지 않습니다. 아래처럼 간단한 정적 서버로 열어주세요.
